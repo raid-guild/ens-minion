@@ -1,0 +1,30 @@
+{
+  "name": "ens-minion",
+  "version": "0.0.1",
+  "description": "ENS subdomain registrar for Moloch Minions",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "npx buidler coverage --network coverage",
+    "test": "npx buidler test"
+  },
+  "keywords": [
+    "ens",
+    "moloch",
+    "minion"
+  ],
+  "author": "Peter Phillips",
+  "license": "ISC",
+  "devDependencies": {
+    "@nomiclabs/buidler": "^1.3.6",
+    "@nomiclabs/buidler-ethers": "^1.3.3",
+    "@nomiclabs/buidler-waffle": "^1.3.4",
+    "chai": "^4.2.0",
+    "ethereum-waffle": "^2.5.1",
+    "ethers": "^4.0.47",
+    "solidity-coverage": "^0.7.7"
+  },
+  "dependencies": {
+    "@ensdomains/ens": "^0.4.4",
+    "@openzeppelin/contracts": "2.5.0"
+  }
+}

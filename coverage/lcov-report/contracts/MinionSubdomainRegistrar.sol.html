@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for contracts/MinionSubdomainRegistrar.sol</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">contracts/</a> MinionSubdomainRegistrar.sol
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>60/60</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>28/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>65/65</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">59×</span>
+<span class="cline-any cline-yes">58×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">60×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">pragma solidity ^0.5.0;
+&nbsp;
+import "@ensdomains/ens/contracts/ENS.sol";
+&nbsp;
+import "./interfaces/ens/Resolver.sol";
+import "./interfaces/ens/Registrar.sol";
+import "./interfaces/moloch/IMoloch.sol";
+import "./interfaces/moloch/IMinion.sol";
+&nbsp;
+/**
+ * @dev Implements a ENS registrar that gives subdomains to Moloch members or requires a Minion to execute transactions for non-members
+ *
+ *
+ *
+ */
+&nbsp;
+contract MinionSubdomainRegistrar {
+&nbsp;
+    // namehash('eth')
+    bytes32 constant public TLD_NODE = 0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
+&nbsp;
+    ENS public ens;
+&nbsp;
+    address public registrar;
+    address public registrarOwner;
+    address public migration;
+    bool public stopped = false;
+&nbsp;
+    struct Domain {
+        string name;
+        address owner;
+        address minion;
+        address moloch;
+    }
+&nbsp;
+    mapping (bytes32 =&gt; Domain) domains;
+&nbsp;
+    modifier owner_only(bytes32 label) {
+        require(owner(label) == msg.sender);
+        _;
+    }
+&nbsp;
+    modifier not_stopped() {
+        require(!stopped);
+        _;
+    }
+&nbsp;
+    modifier registrar_owner_only() {
+        require(msg.sender == registrarOwner);
+        _;
+    }
+&nbsp;
+    event TransferAddressSet(bytes32 indexed label, address addr);
+    event DomainTransferred(bytes32 indexed label, string name);
+    event OwnerChanged(bytes32 indexed label, address indexed oldOwner, address indexed newOwner);
+    event DomainConfigured(bytes32 indexed label, address indexed minion);
+    event DomainUnlisted(bytes32 indexed label);
+    event NewRegistration(bytes32 indexed label, string subdomain, address indexed owner);
+&nbsp;
+    constructor(ENS _ens) public {
+        ens = _ens;
+        registrar = ens.owner(TLD_NODE);
+        registrarOwner = msg.sender;
+    }
+&nbsp;
+    /** Registar owner functions **/
+&nbsp;
+    function transferOwnership(address newOwner) public registrar_owner_only {
+        registrarOwner = newOwner;
+    }
+&nbsp;
+    /**
+     * @dev Sets the address where domains are migrated to.
+     * @param _migration Address of the new registrar.
+     */
+    function setMigrationAddress(address _migration) public registrar_owner_only {
+        require(stopped);
+        migration = _migration;
+    }
+&nbsp;
+    /**
+     * @dev Stops the registrar, disabling configuring of new domains.
+     */
+    function stop() public not_stopped registrar_owner_only {
+        stopped = true;
+    }
+&nbsp;
+    /** Domain owner functions **/
+&nbsp;
+    /**
+     * @dev Sets the resolver record for a name in ENS.
+     * @param name The name to set the resolver for.
+     * @param resolver The address of the resolver
+     */
+    function setResolver(string memory name, address resolver) public owner_only(keccak256(bytes(name))) {
+        bytes32 label = keccak256(bytes(name));
+        bytes32 node = keccak256(abi.encodePacked(TLD_NODE, label));
+        ens.setResolver(node, resolver);
+    }
+&nbsp;
+    /**
+     * @dev Transfers internal control of a name to a new account. Does not update
+     *      ENS.
+     * @param name The name to transfer.
+     * @param newOwner The address of the new owner.
+     */
+    function transfer(string memory name, address newOwner) public owner_only(keccak256(bytes(name))) {
+        bytes32 label = keccak256(bytes(name));
+        emit OwnerChanged(label, domains[label].owner, newOwner);
+        domains[label].owner = newOwner;
+    }
+&nbsp;
+    /**
+     * @dev Unlists a domain
+     * May only be called by the owner.
+     * @param name The name of the domain to unlist.
+     */
+    function unlistDomain(string memory name) public owner_only(keccak256(bytes(name))) {
+        bytes32 label = keccak256(bytes(name));
+        Registrar(registrar).reclaim(uint256(label), domains[label].owner);
+        Registrar(registrar).transferFrom(address(this), domains[label].owner, uint256(label));
+        delete domains[label];
+        emit DomainUnlisted(label);
+    }
+&nbsp;
+    /** Add domain to registrar **/
+&nbsp;
+    /**
+     * @dev Configures a domain for sale.
+     * @param name The name to configure.
+     * @param minion The address of the Minion that will control subdomain permissions
+     */
+    function configureDomain(string memory name, address minion) public {
+        configureDomainFor(name, minion, msg.sender);
+    }
+&nbsp;
+    /**
+     * @dev Configures a domain.
+     * @param name The name to configure.
+     * @param minion The address of the Minion who can assign subdomains
+     * @param _owner The address to assign ownership of this domain to.
+     */
+    function configureDomainFor(string memory name, address minion, address _owner) public not_stopped owner_only(keccak256(bytes(name))) {
+        bytes32 label = keccak256(bytes(name));
+        Domain storage domain = domains[label];
+&nbsp;
+        if (Registrar(registrar).ownerOf(uint256(label)) != address(this)) {
+            Registrar(registrar).transferFrom(msg.sender, address(this), uint256(label));
+            Registrar(registrar).reclaim(uint256(label), address(this));
+        }
+&nbsp;
+        if (domain.owner != _owner) {
+            domain.owner = _owner;
+        }
+&nbsp;
+        if (keccak256(abi.encodePacked(domain.name)) != label) {
+            // New listing
+            domain.name = name;
+        }
+&nbsp;
+        domain.minion = minion;
+        domain.moloch = IMinion(minion).moloch();
+&nbsp;
+        emit DomainConfigured(label, minion);
+    }
+&nbsp;
+    /** Move domain to a new registrar **/
+&nbsp;
+    /**
+     * @dev Migrates the domain to a new registrar.
+     * @param name The name of the domain to migrate.
+     */
+    function migrate(string memory name) public owner_only(keccak256(bytes(name))) {
+        require(stopped);
+        require(migration != address(0x0));
+&nbsp;
+        bytes32 label = keccak256(bytes(name));
+        Domain storage domain = domains[label];
+&nbsp;
+        Registrar(registrar).approve(migration, uint256(label));
+&nbsp;
+        MinionSubdomainRegistrar(migration).configureDomainFor(
+            domain.name,
+            domain.minion,
+            domain.owner
+        );
+&nbsp;
+        delete domains[label];
+&nbsp;
+        emit DomainTransferred(label, name);
+    }
+&nbsp;
+    /** Register a subdomain **/
+&nbsp;
+    /**
+     * @dev Registers a subdomain.
+     * @param label The label hash of the domain to register a subdomain of.
+     * @param subdomain The desired subdomain label.
+     * @param _subdomainOwner The account that should own the newly configured subdomain.
+     */
+    function register(bytes32 label, string calldata subdomain, address _subdomainOwner, address resolver) external not_stopped {
+        address subdomainOwner = _subdomainOwner;
+        bytes32 domainNode = keccak256(abi.encodePacked(TLD_NODE, label));
+        bytes32 subdomainLabel = keccak256(bytes(subdomain));
+&nbsp;
+        // Subdomain must not be registered already.
+        require(ens.owner(keccak256(abi.encodePacked(domainNode, subdomainLabel))) == address(0));
+&nbsp;
+        Domain storage domain = domains[label];
+&nbsp;
+        // Domain must be available for registration
+        require(keccak256(abi.encodePacked(domain.name)) == label);
+&nbsp;
+        // Register the domain
+        if (subdomainOwner == address(0x0)) {
+            subdomainOwner = msg.sender;
+        }
+&nbsp;
+        // Domain can only be registered by Minion or for members
+        ( , uint256 stakes, , , , ) = IMoloch(domain.moloch).members(subdomainOwner);
+        require(msg.sender == domain.minion || stakes &gt; 0);
+&nbsp;
+        doRegistration(domainNode, subdomainLabel, subdomainOwner, Resolver(resolver));
+&nbsp;
+        emit NewRegistration(label, subdomain, subdomainOwner);
+    }
+&nbsp;
+    function doRegistration(bytes32 node, bytes32 label, address subdomainOwner, Resolver resolver) internal {
+        // Get the subdomain so we can configure it
+        ens.setSubnodeOwner(node, label, address(this));
+&nbsp;
+        bytes32 subnode = keccak256(abi.encodePacked(node, label));
+        // Set the subdomain's resolver
+        ens.setResolver(subnode, address(resolver));
+&nbsp;
+        // Set the address record on the resolver
+        resolver.setAddr(subnode, subdomainOwner);
+&nbsp;
+        // Pass ownership of the new subdomain to the registrant
+        ens.setOwner(subnode, subdomainOwner);
+    }
+&nbsp;
+    /** View **/
+&nbsp;
+    /**
+     * @dev owner returns the address of the account that controls a domain.
+     *      Initially this is a null address. If the name has been
+     *      transferred to this contract, then the internal mapping is consulted
+     *      to determine who controls it. If the owner is not set,
+     *      the owner of the domain in the Registrar is returned.
+     * @param label The label hash of the deed to check.
+     * @return The address owning the deed.
+     */
+    function owner(bytes32 label) public view returns (address) {
+        if (domains[label].owner != address(0x0)) {
+            return domains[label].owner;
+        }
+&nbsp;
+        return Registrar(registrar).ownerOf(uint256(label));
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 16 2020 14:30:09 GMT-0700 (Pacific Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
