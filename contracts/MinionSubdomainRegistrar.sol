@@ -53,7 +53,7 @@ contract MinionSubdomainRegistrar {
     event TransferAddressSet(bytes32 indexed label, address addr);
     event DomainTransferred(bytes32 indexed label, string name);
     event OwnerChanged(bytes32 indexed label, address indexed oldOwner, address indexed newOwner);
-    event DomainConfigured(bytes32 indexed label, address indexed minion);
+    event DomainConfigured(bytes32 indexed label, string domain, address indexed minion);
     event DomainUnlisted(bytes32 indexed label);
     event NewRegistration(bytes32 indexed label, string subdomain, address indexed owner);
 
@@ -161,7 +161,7 @@ contract MinionSubdomainRegistrar {
         domain.minion = minion;
         domain.moloch = IMinion(minion).moloch();
 
-        emit DomainConfigured(label, minion);
+        emit DomainConfigured(label, name, minion);
     }
 
     /** Move domain to a new registrar **/
@@ -211,7 +211,7 @@ contract MinionSubdomainRegistrar {
         // Domain must be available for registration
         require(keccak256(abi.encodePacked(domain.name)) == label);
 
-        // Register the domain
+        // Use msg.sender if _subdomainOwner is not set
         if (subdomainOwner == address(0x0)) {
             subdomainOwner = msg.sender;
         }
@@ -223,6 +223,26 @@ contract MinionSubdomainRegistrar {
         doRegistration(domainNode, subdomainLabel, subdomainOwner, Resolver(resolver));
 
         emit NewRegistration(label, subdomain, subdomainOwner);
+    }
+
+    function deregister(bytes32 label, string calldata subdomain, address resolver) external {
+        bytes32 domainNode = keccak256(abi.encodePacked(TLD_NODE, label));
+        bytes32 subdomainLabel = keccak256(bytes(subdomain));
+        address subdomainOwner = ens.owner(keccak256(abi.encodePacked(domainNode, subdomainLabel)));
+
+        // Subdomain must be registered already.
+        require(subdomainOwner != address(0));
+
+        Domain storage domain = domains[label];
+
+        // Domain must be available for registration
+        require(keccak256(abi.encodePacked(domain.name)) == label);
+        // Domain can only be deregistered by domain's Minion or subdomain owner
+        require(msg.sender == domain.minion || msg.sender == subdomainOwner);
+
+        doRegistration(domainNode, subdomainLabel, address(0), Resolver(resolver));
+
+        emit NewRegistration(label, subdomain, address(0));
     }
 
     function doRegistration(bytes32 node, bytes32 label, address subdomainOwner, Resolver resolver) internal {
