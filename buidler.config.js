@@ -17,6 +17,12 @@ task("accounts", "Prints the list of accounts", async () => {
 // Go to https://buidler.dev/config/ to learn more
 module.exports = {
   networks: {
+    kovan: {
+      url: "https://kovan.infura.io/v3/9207b788fe0e4fe19499d8832999ea7e",
+      accounts: {
+        mnemonic: "antique found bounce pull void best work ladder tomato else version velvet charge fame shoulder"
+      }
+    },
     coverage: {
       url: 'http://localhost:8555'
     }
