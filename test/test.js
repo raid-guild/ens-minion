@@ -103,8 +103,13 @@ describe("MinionSubdomainRegistrar", function() {
     expect(await ens.owner(namehash.hash('member.guildname.eth'))).to.not.equal(accounts[2]._address)
   })
 
-  it('should fail to register a subdomain (non-member)', async function() {
-    await expect(minionRegistrar.connect(accounts[3]).register(sha3('guildname'), 'member2', accounts[3]._address, resolver.address)).to.be.revertedWith('')
+  it('should fail to register a subdomain (non-member sender)', async function() {
+    await expect(minionRegistrar.connect(accounts[3]).register(sha3('guildname'), 'member2', accounts[2]._address, resolver.address)).to.be.revertedWith('')
+    expect(await ens.owner(namehash.hash('member2.guildname.eth'))).to.not.equal(accounts[3]._address)
+  })
+
+  it('should fail to register a subdomain (non-member owner)', async function() {
+    await expect(minionRegistrar.connect(accounts[2]).register(sha3('guildname'), 'member2', accounts[3]._address, resolver.address)).to.be.revertedWith('')
     expect(await ens.owner(namehash.hash('member2.guildname.eth'))).to.not.equal(accounts[3]._address)
   })
 

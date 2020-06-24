@@ -9,13 +9,10 @@ import "./interfaces/moloch/IMinion.sol";
 
 /**
  * @dev Implements a ENS registrar that gives subdomains to Moloch members or requires a Minion to execute transactions for non-members
- *
- *
- *
+ * @author Peter Phillips, based off SubdomainRegistrar.sol by ENS https://github.com/ensdomains/subdomain-registrar/blob/master/contracts/SubdomainRegistrar.sol
  */
 
 contract MinionSubdomainRegistrar {
-
     // namehash('eth')
     bytes32 constant public TLD_NODE = 0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
 
@@ -216,9 +213,13 @@ contract MinionSubdomainRegistrar {
             subdomainOwner = msg.sender;
         }
 
-        // Domain can only be registered by Minion or for members
-        ( , uint256 stakes, , , , ) = IMoloch(domain.moloch).members(subdomainOwner);
-        require(msg.sender == domain.minion || stakes > 0);
+        // Domain can only be registered by Minion or by members (and only for members)
+        if (msg.sender != domain.minion) {
+          // If msg.sender is not minion check that the msg.sender and new owner are members
+          ( , uint256 ownerStakes, , , , ) = IMoloch(domain.moloch).members(subdomainOwner);
+          ( , uint256 senderStakes, , , , ) = IMoloch(domain.moloch).members(msg.sender);
+          require(senderStakes > 0 && ownerStakes > 0);
+        }
 
         doRegistration(domainNode, subdomainLabel, subdomainOwner, Resolver(resolver));
 
